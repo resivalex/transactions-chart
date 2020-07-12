@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    restart: always
+    command: sh ./start.sh
+    ports:
+      - 8080:8080
+    volumes:
+      - ./build:/app/build
+      - ./frontend:/app/frontend
