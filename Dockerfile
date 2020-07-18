@@ -9,5 +9,5 @@ COPY ["package.json", "yarn.lock", ".babelrc.js",\
 COPY src src
 COPY build build
 
-RUN yarn install
+RUN yarn --network-timeout 100000 install
 RUN yarn run build
