@@ -10,4 +10,6 @@ COPY ["package.json", "yarn.lock", ".babelrc.js",\
       "server.js", "./"]
 COPY src src
 COPY build build
-RUN apk add git && yarn install && yarn run build
+RUN apk add git
+RUN yarn install
+RUN yarn run build
