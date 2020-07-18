@@ -1,6 +1,6 @@
-const config = require('./webpack.config')
+const genConfig = require('./webpack.config')
 
 module.exports = {
-  ...config,
+  ...genConfig({ isDev: false }),
   mode: 'production'
 }

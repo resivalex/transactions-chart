@@ -1,9 +1,9 @@
 const path = require('path')
 
-const config = require('./webpack.config')
+const genConfig = require('./webpack.config')
 
 module.exports = {
-  ...config,
+  ...genConfig({ isDev: true }),
   mode: 'development',
   devServer: {
     hot: false,
