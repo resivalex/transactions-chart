@@ -3,6 +3,6 @@ module.exports = {
   printWidth: 100,
   semi: false,
   arrowParens: 'always',
-  parser: 'typescript',
+  parser: 'vue',
   trailingComma: 'none'
 }

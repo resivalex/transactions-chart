@@ -1,14 +1,15 @@
 <template>
-  <div>Hello from Vue component!</div>
+  <div><Chart></Chart></div>
 </template>
 
 <script>
-  import Vue from 'vue'
+import Vue from 'vue'
+import Chart from './Chart'
 
-  export default {
-    data: () => ({})
-  }
+export default {
+  data: () => ({}),
+  components: { Chart }
+}
 </script>
 
-<style>
-</style>
+<style></style>
