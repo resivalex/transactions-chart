@@ -9,4 +9,4 @@ COPY ["package.json", "yarn.lock", ".babelrc.js",\
 COPY src src
 COPY build build
 
-RUN yarn --network-concurrency 1 install && yarn run build
+RUN yarn install && yarn run build
