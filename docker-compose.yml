@@ -3,9 +3,6 @@ services:
   web:
     build: .
     restart: always
-    command: sh ./start.sh
+    command: node server.js
     ports:
-      - 8080:8080
-    volumes:
-      - ./build:/app/build
-      - ./src:/app/src
+      - 8282:8282

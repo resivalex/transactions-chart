@@ -12,7 +12,7 @@ module.exports = (options) => {
     },
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js',
+      filename: 'transactions.js',
       publicPath: '/'
     },
     devServer: {
@@ -55,7 +55,7 @@ module.exports = (options) => {
       ]
     },
     plugins: [
-      new VueLoaderPlugin()
+      new VueLoaderPlugin(), ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: 'transactions.css' })])
     ]
   }
 }

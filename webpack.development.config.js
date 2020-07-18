@@ -9,6 +9,6 @@ module.exports = {
     hot: false,
     contentBase: path.resolve(__dirname, 'build'),
     host: '0.0.0.0',
-    port: 8282
+    port: 80
   }
 }
