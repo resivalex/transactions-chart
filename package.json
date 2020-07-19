@@ -13,10 +13,11 @@
   "dependencies": {
     "express": "^4.16.4",
     "lodash": "^4.17.10",
+    "moment": "^2.27.0",
     "papaparse": "^5.2.0",
     "vue": "^2.6.11",
     "vue-d3-sunburst": "^1.0.1",
-    "vue-router": "^3.3.4"
+    "vue2-datepicker": "^3.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

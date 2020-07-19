@@ -1,5 +1,5 @@
 <template>
-  <sunburst :data="tree" min-angle-displayed="0" color-scheme="schemeSet3">
+  <sunburst :data="tree" :min-angle-displayed="0" color-scheme="schemeSet3">
     <!-- Add behaviors -->
     <template slot-scope="{ on, actions }">
       <highlightOnHover v-bind="{ on, actions }" />
@@ -24,6 +24,7 @@
       :colorGetter="colorGetter"
       :from="nodes.clicked"
       :width="width"
+      :item-width="width / 4"
     />
   </sunburst>
 </template>

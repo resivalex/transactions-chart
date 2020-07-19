@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <input type="file" ref="myFile" @change="selectedFile" />
-  </div>
+  <label>
+    <div class="select-file-button">Загрузить отчёт по транзакциям из Tinkoff</div>
+    <input class="file-input" type="file" accept="text/csv" ref="myFile" @change="selectedFile" />
+  </label>
 </template>
 
 <script>
 import Papa from 'papaparse'
 import _ from 'lodash'
+import moment from 'moment'
 
 const config = {
   delimiter: '', // auto-detect
@@ -59,11 +61,11 @@ function extractSpends(lines) {
   _.each(lines, (line) => {
     const amount = parseFloat(line['Сумма операции'])
 
-    if (amount <= 0 && line['Статус'] === 'OK') {
+    if (amount <= 0 && line['Статус'] === 'OK' && line['Валюта операции'] === 'RUB') {
       const name = line['Описание']
       if (name !== 'Перевод между счетами') {
         result.push({
-          date: line['Дата операции'],
+          date: moment(line['Дата операции'], 'DD.MM.YYYY hh:mm:ss').toDate(),
           category: line['Категория'],
           name: name,
           amount: -amount
@@ -90,3 +92,26 @@ MCC: "5411"
 Сумма платежа: "-447,64"
  */
 </script>
+
+<style lang="scss">
+  .file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .select-file-button {
+    padding: 8px 12px;
+    display: inline-block;
+    background: #ffe40e;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      background: #ffbc17;
+    }
+  }
+</style>
