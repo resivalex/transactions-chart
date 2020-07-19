@@ -59,13 +59,16 @@ function extractSpends(lines) {
   _.each(lines, (line) => {
     const amount = parseFloat(line['Сумма операции'])
 
-    if (amount <= 0) {
-      result.push({
-        date: line['Дата операции'],
-        category: line['Категория'],
-        name: line['Описание'],
-        amount: -amount
-      })
+    if (amount <= 0 && line['Статус'] === 'OK') {
+      const name = line['Описание']
+      if (name !== 'Перевод между счетами') {
+        result.push({
+          date: line['Дата операции'],
+          category: line['Категория'],
+          name: name,
+          amount: -amount
+        })
+      }
     }
   })
   return result

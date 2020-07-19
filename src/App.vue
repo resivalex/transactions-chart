@@ -14,40 +14,32 @@ import _ from 'lodash'
 export default {
   data() {
     return {
-      tree: {
-        name: 'Пример трат',
-        children: [
-          {
-            name: 'Сладости',
-            children: [
-              { name: 'Мороженое', size: 80 },
-              { name: 'Пирожное', size: 121 },
-              { name: 'Кофе', size: 200 }
-            ]
-          },
-          {
-            name: 'Радости',
-            children: [
-              { name: 'Кино', size: 320 },
-              { name: 'Музей', size: 550 }
-            ]
-          }
-        ]
-      }
+      transactions: [
+        { date: new Date(), category: 'Сладости', name: 'Мороженое', amount: 80 },
+        { date: new Date(), category: 'Сладости', name: 'Пирожное', amount: 121 },
+        { date: new Date(), category: 'Сладости', name: 'Кофе', amount: 200 },
+        { date: new Date(), category: 'Радости', name: 'Кино', amount: 320 },
+        { date: new Date(), category: 'Радости', name: 'Музей', amount: 550 },
+      ]
     }
   },
   components: { Chart, FileLoader },
   methods: {
     fileLoaded(transactions) {
+      this.transactions = transactions
+    }
+  },
+  computed: {
+    tree() {
       const accumulator = {}
-      _.each(transactions, (transaction) => {
+      _.each(this.transactions, (transaction) => {
         const { date, category, name, amount } = transaction
 
         if (!accumulator[category]) accumulator[category] = {}
         if (!accumulator[category][name]) accumulator[category][name] = 0
         accumulator[category][name] += amount
       })
-      const tree = { name: 'Траты', children: [] }
+      const result = { name: 'Траты', children: [] }
       _.each(accumulator, (categoryData, categoryName) => {
         const categoryTree = { name: categoryName, children: [] }
 
@@ -55,10 +47,10 @@ export default {
           categoryTree.children.push({ name: spendName, size: spendAmount })
         })
 
-        tree.children.push(categoryTree)
+        result.children.push(categoryTree)
       })
 
-      this.tree = tree
+      return result
     }
   }
 }
