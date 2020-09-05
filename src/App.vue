@@ -1,7 +1,8 @@
 <template>
   <div class="layout">
     <div class="instruments-wrapper">
-      <FileLoader @loaded="fileLoaded"></FileLoader>
+      <TinkoffFileLoader @loaded="fileLoaded"></TinkoffFileLoader>
+      <OneMoneyFileLoader @loaded="fileLoaded"></OneMoneyFileLoader>
       <DateRange :from="dateFrom" :to="dateTo" @change="dateRangeChanged"></DateRange>
     </div>
     <div class="chart-wrapper">
@@ -13,7 +14,8 @@
 <script>
 import Vue from 'vue'
 import Chart from '@/Chart'
-import FileLoader from '@/FileLoader'
+import TinkoffFileLoader from '@/TinkoffFileLoader'
+import OneMoneyFileLoader from '@/OneMoneyFileLoader'
 import DateRange from '@/DateRange'
 import _ from 'lodash'
 import moment from 'moment'
@@ -34,7 +36,7 @@ export default {
       dateTo: null
     }
   },
-  components: { Chart, FileLoader, DateRange },
+  components: { Chart, TinkoffFileLoader, OneMoneyFileLoader, DateRange },
   methods: {
     fileLoaded(transactions) {
       this.transactions = transactions
