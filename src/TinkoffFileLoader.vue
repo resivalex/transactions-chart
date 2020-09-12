@@ -38,8 +38,8 @@ const config = {
 }
 
 export default {
-  data: {
-    text: ''
+  data() {
+    return {}
   },
   methods: {
     selectedFile: function () {
@@ -94,24 +94,24 @@ MCC: "5411"
 </script>
 
 <style lang="scss" scoped>
-  .file-input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
+.file-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
 
-  .select-file-button {
-    padding: 8px 12px;
-    display: inline-block;
-    background: #ffe40e;
-    border-radius: 3px;
-    cursor: pointer;
+.select-file-button {
+  padding: 8px 12px;
+  display: inline-block;
+  background: #ffe40e;
+  border-radius: 3px;
+  cursor: pointer;
 
-    &:hover {
-      background: #ffbc17;
-    }
+  &:hover {
+    background: #ffbc17;
   }
+}
 </style>

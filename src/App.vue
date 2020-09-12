@@ -25,11 +25,21 @@ import _ from 'lodash'
 import moment from 'moment'
 
 const exampleTransactions = [
-  { date: new Date(), category: 'Сладости', name: 'Мороженое', amount: 80 },
-  { date: new Date(), category: 'Сладости', name: 'Пирожное', amount: 121 },
-  { date: new Date(), category: 'Сладости', name: 'Кофе', amount: 200 },
-  { date: new Date(), category: 'Радости', name: 'Кино', amount: 320 },
-  { date: new Date(), category: 'Радости', name: 'Музей', amount: 550 }
+  {
+    date: moment().subtract(3, 'days').toDate(),
+    category: 'Сладости',
+    name: 'Мороженое',
+    amount: 80
+  },
+  {
+    date: moment().subtract(2, 'days').toDate(),
+    category: 'Сладости',
+    name: 'Пирожное',
+    amount: 121
+  },
+  { date: moment().subtract(2, 'days').toDate(), category: 'Сладости', name: 'Кофе', amount: 200 },
+  { date: moment().subtract(1, 'day').toDate(), category: 'Радости', name: 'Кино', amount: 320 },
+  { date: moment().toDate(), category: 'Радости', name: 'Музей', amount: 150 }
 ]
 
 export default {
@@ -96,20 +106,18 @@ function maxDate(items) {
 
 <style>
 #vue-app {
-  overflow: hidden;
 }
 
 .layout {
-  position: relative;
 }
 
 .instruments-wrapper {
-  height: 400px;
+  height: 50px;
   width: 100%;
 }
 
 .chart-wrapper {
-  height: 400px;
+  height: 80vh;
   width: 100%;
 }
 

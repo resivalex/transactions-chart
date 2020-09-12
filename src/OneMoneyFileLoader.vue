@@ -38,8 +38,8 @@ const config = {
 }
 
 export default {
-  data: {
-    text: ''
+  data() {
+    return {}
   },
   methods: {
     selectedFile: function () {
@@ -98,24 +98,24 @@ function extractSpends(lines) {
 </script>
 
 <style lang="scss" scoped>
-  .file-input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
+.file-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
 
-  .select-file-button {
-    padding: 8px 12px;
-    display: inline-block;
-    background: #fd7eb8;
-    border-radius: 3px;
-    cursor: pointer;
+.select-file-button {
+  padding: 8px 12px;
+  display: inline-block;
+  background: #fd7eb8;
+  border-radius: 3px;
+  cursor: pointer;
 
-    &:hover {
-      background: #e03ea4;
-    }
+  &:hover {
+    background: #e03ea4;
   }
+}
 </style>
