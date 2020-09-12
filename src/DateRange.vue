@@ -12,32 +12,17 @@
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css'
 import moment from 'moment'
+import _ from 'lodash'
 
 export default {
   props: ['from', 'to'],
   components: { DatePicker },
   data() {
     return {
-      datePickerShortcuts: [
-        {
-          text: moment().year().toString(),
-          onClick: () => [moment().startOf('year').toDate(), moment().toDate()]
-        },
-        {
-          text: (moment().year() - 1).toString(),
-          onClick: () => [
-            moment().subtract(1, 'years').startOf('year').toDate(),
-            moment().subtract(1, 'years').endOf('year').toDate()
-          ]
-        },
-        {
-          text: (moment().year() - 2).toString(),
-          onClick: () => [
-            moment().subtract(2, 'years').startOf('year').toDate(),
-            moment().subtract(2, 'years').endOf('year').toDate()
-          ]
-        }
-      ]
+      datePickerShortcuts: _.map([...lastMonths(), ...lastYears()], (info) => ({
+        text: info.title,
+        onClick: () => [info.dateFrom, info.dateTo]
+      }))
     }
   },
   methods: {
@@ -50,5 +35,27 @@ export default {
       return [this.from, this.to]
     }
   }
+}
+
+function lastMonths() {
+  return _.times(6, (shift) => {
+    const mnt = moment().subtract(shift, 'months')
+    return {
+      title: mnt.format('MMMM'),
+      dateFrom: mnt.startOf('month').toDate(),
+      dateTo: mnt.endOf('month').toDate()
+    }
+  })
+}
+
+function lastYears() {
+  return _.times(3, (shift) => {
+    const mnt = moment().subtract(shift, 'year')
+    return {
+      title: mnt.format('Y'),
+      dateFrom: mnt.startOf('year').toDate(),
+      dateTo: mnt.endOf('year').toDate()
+    }
+  })
 }
 </script>

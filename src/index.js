@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App'
+import moment from 'moment'
 
 console.log('JS app')
+moment.locale('ru')
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

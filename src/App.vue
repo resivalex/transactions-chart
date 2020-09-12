@@ -8,6 +8,9 @@
     <div class="chart-wrapper">
       <Chart :tree="tree"></Chart>
     </div>
+    <div class="table-wrapper">
+      <TransactionsTable :transactions="filteredTransactions"></TransactionsTable>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,7 @@ import Chart from '@/Chart'
 import TinkoffFileLoader from '@/TinkoffFileLoader'
 import OneMoneyFileLoader from '@/OneMoneyFileLoader'
 import DateRange from '@/DateRange'
+import TransactionsTable from '@/TransactionsTable'
 import _ from 'lodash'
 import moment from 'moment'
 
@@ -36,7 +40,7 @@ export default {
       dateTo: null
     }
   },
-  components: { Chart, TinkoffFileLoader, OneMoneyFileLoader, DateRange },
+  components: { Chart, TinkoffFileLoader, OneMoneyFileLoader, DateRange, TransactionsTable },
   methods: {
     fileLoaded(transactions) {
       this.transactions = transactions
@@ -96,23 +100,20 @@ function maxDate(items) {
 }
 
 .layout {
-  height: 100%;
   position: relative;
 }
 
 .instruments-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
+  height: 400px;
+  width: 100%;
 }
 
 .chart-wrapper {
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  height: 400px;
+  width: 100%;
+}
+
+.table-wrapper {
+  position: relative;
 }
 </style>
