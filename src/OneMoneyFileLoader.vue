@@ -57,7 +57,6 @@ export default {
 }
 
 function extractSpends(lines) {
-  console.log({ lines })
   const result = []
   _.each(lines, (line) => {
     const amount = parseFloat(line['СУММА'])

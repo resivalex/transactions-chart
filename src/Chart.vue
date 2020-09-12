@@ -1,5 +1,10 @@
 <template>
-  <sunburst :data="tree" :min-angle-displayed="0" color-scheme="schemeSet3">
+  <sunburst
+    :data="tree"
+    :min-angle-displayed="0"
+    color-scheme="schemeSet3"
+    @clickNode="nodeClicked"
+  >
     <!-- Add behaviors -->
     <template slot-scope="{ on, actions }">
       <highlightOnHover v-bind="{ on, actions }" />
@@ -50,6 +55,20 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    nodeClicked(info) {
+      let node = info.node
+      const path = []
+
+      path.push(node.data.name)
+      while (node.parent) {
+        node = node.parent
+        path.push(node.data.name)
+      }
+      path.reverse()
+      this.$emit('pathSelected', path)
+    }
   }
 }
 </script>

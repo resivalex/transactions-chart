@@ -6,10 +6,10 @@
       <DateRange :from="dateFrom" :to="dateTo" @change="dateRangeChanged"></DateRange>
     </div>
     <div class="chart-wrapper">
-      <Chart :tree="tree"></Chart>
+      <Chart :tree="tree" @pathSelected="currentPathChanged"></Chart>
     </div>
     <div class="table-wrapper">
-      <TransactionsTable :transactions="filteredTransactions"></TransactionsTable>
+      <TransactionsTable :transactions="tableTransactions"></TransactionsTable>
     </div>
   </div>
 </template>
@@ -47,7 +47,8 @@ export default {
     return {
       transactions: exampleTransactions,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      currentPath: []
     }
   },
   components: { Chart, TinkoffFileLoader, OneMoneyFileLoader, DateRange, TransactionsTable },
@@ -56,10 +57,14 @@ export default {
       this.transactions = transactions
       this.dateFrom = minDate(transactions)
       this.dateTo = moment(maxDate(transactions)).endOf('day').toDate()
+      this.currentPath = []
     },
     dateRangeChanged(range) {
       this.dateFrom = range.from
       this.dateTo = range.to
+    },
+    currentPathChanged(path) {
+      this.currentPath = path
     }
   },
   computed: {
@@ -91,6 +96,18 @@ export default {
         this.transactions,
         (item) => item.date >= this.dateFrom && item.date <= this.dateTo
       )
+    },
+    tableTransactions() {
+      if (this.currentPath.length === 2) {
+        return _.filter(this.filteredTransactions, (item) => item.category === this.currentPath[1])
+      }
+      if (this.currentPath.length === 3) {
+        return _.filter(
+          this.filteredTransactions,
+          (item) => item.category === this.currentPath[1] && item.name === this.currentPath[2]
+        )
+      }
+      return this.filteredTransactions
     }
   }
 }
