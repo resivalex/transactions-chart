@@ -8,6 +8,7 @@
     <div class="chart-wrapper">
       <Chart :tree="tree" @pathSelected="currentPathChanged"></Chart>
     </div>
+    <div><MonthChart :transactions="tableTransactions"></MonthChart></div>
     <div class="table-wrapper">
       <TransactionsTable :transactions="tableTransactions"></TransactionsTable>
     </div>
@@ -20,6 +21,7 @@ import Chart from '@/Chart'
 import TinkoffFileLoader from '@/TinkoffFileLoader'
 import OneMoneyFileLoader from '@/OneMoneyFileLoader'
 import DateRange from '@/DateRange'
+import MonthChart from '@/MonthChart'
 import TransactionsTable from '@/TransactionsTable'
 import _ from 'lodash'
 import moment from 'moment'
@@ -51,7 +53,14 @@ export default {
       currentPath: []
     }
   },
-  components: { Chart, TinkoffFileLoader, OneMoneyFileLoader, DateRange, TransactionsTable },
+  components: {
+    Chart,
+    TinkoffFileLoader,
+    OneMoneyFileLoader,
+    DateRange,
+    TransactionsTable,
+    MonthChart
+  },
   methods: {
     fileLoaded(transactions) {
       this.transactions = transactions
